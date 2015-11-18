@@ -207,34 +207,6 @@
       
         <h2 id="折腾hexo记事">折腾hexo记事</h2><h1 id="小白的代码洁癖">小白的代码洁癖</h1><p>官方教程是直接把hexo装在了全局小面。虽然我小白，但是那个大大的<code>-g</code>还是看得懂的。</p>
 <p>这个时候我的代码洁癖犯了，不想用全局的东西去做实验。但是又不会卸载（好笨，我去哭会），就想在工作文件夹再安装一次。结果是：简直DBL有木有。</p>
-<p>只见我的CMD一直在下载对象，谁知道是啥东西，下载了5分钟之后还没完，我觉得这有点不对劲，肯定是哪地方处错误了。又不会排查，就重装呗。再装还是那样。</p>
-<p>半天之后我放弃了，去网上搜教程。看到别人输入<code>hexo init</code>之后就输出了没几句话，我觉得肯定是我的不对。后来想了半天，也没有什么地方不对劲啊。于是，我的代码洁癖开始妥协了。</p>
-<p>然后，然后就正常了啊有木有！！！</p>
-<p>我暗暗骂了自己两局，接着干。</p>
-<h2 id="ssh">ssh</h2><p>原来我自学过一段时间的git，都是按照每次push的时候输入邮箱密码进行身份认证的。我觉着这没啥，总不能谁都能往我的仓库里面推东西吧，虽然我经常清空仓库，推倒重来。</p>
-<p>这次直接上来让我ssh，也不说为啥。我百科了一下，没看懂（哭）。然后想，大家都这样弄，不知道为啥也听说过ssh是不，最起码学习了。</p>
-<p>然后直接搞定了。</p>
-<p>这个时候，读者们说了：难道你写了半天都是屁话么？<br>不是，下面就说说我的不开心的事给大家开心一下。</p>
-<p>一路顺风的事情发生在公司，我想在家里也试试，因为文件目录的原因（这个坑待会说）。</p>
-<h3 id="keygen的位置">keygen的位置</h3><p>家里的电脑也生成key的时候，出现了一个提示，我觉得有点不对劲。但是以我的聪明才智，依然搞定了。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TODO</span><br></pre></td></tr></table></figure></p>
-<p><strong>问题的原因：</strong>是Windows专有的。因为找不到home文件夹。<br><strong>解决方法：</strong>在Windows的环境变量里面添加home文件夹。具体地址就是你的用户名的文件夹地址。就是下面这个样子的。<br><img src="http://i.imgur.com/b5YHFVD.png" alt=""><br>添加完之后，就不会出现在第一步让你选择文件夹的时候出现两个<code>//.ssh</code>了，直接回车就行。而且你的文件夹也自动变成了<code>c://user/yourname/.ssh</code>了。</p>
-<h3 id="Error:_Permission_denied">Error: Permission denied</h3><p>发现这个问题也是挺郁闷的，而且花费了我两天时间还是没有搞定。</p>
-<p>在去<a href="https://help.github.com/articles/error-permission-denied-publickey/" target="_blank" rel="external">github问题解决页面</a>去查看解决方法的时候，发现他们真的是不遗余力的推荐他们的客户端，而后再去告诉用户怎么解决。</p>
-<p>当然，这个页面没有解决我的问题。</p>
-<p>然后我去看了<a href="...">stackoverflow</a>页面，第一条命令<code>cd ~/.ssh &amp;&amp;</code>就不能执行,我深深的怀疑这不是cmd的命令，但是也只能怀疑而已，上面也没说什么平台…</p>
-<h2 id="hexo主题">hexo主题</h2><p>我用的是<a href="http://litten.github.io/2014/08/31/hexo-theme-yilia/" target="_blank" rel="external">这个主题</a>，<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">github主页</a>，是腾讯的一小哥做的，988个星（好吉利）了，好羡慕，这里崇拜一下先。但是现在好像有点潜水了，动静很小了。</p>
-<h3 id="安装位置">安装位置</h3><p>装好之后发现不支持非根文件夹的hexo，这个就是上面ssh时候说的那个坑。hexo是支持非根文件夹的，只要在配置文件里配置一下即可。</p>
-<p>但是主题不支持。为了先把网站打起来，其他的以后再倒腾，我就…我就重装了。</p>
-<p>这次直接全部在根文件夹生成全部文件，然后主题正常了。但是在github的issue里面有人也提到了这个问题。但是好像没有得到“官方”的支持。</p>
-<h3 id="图像">图像</h3><ul>
-<li>在说明文档里面说明了头像是链接。没有考虑到头像直接放到网站文件里的情况</li>
-<li>我把头像设置为链接后，首页的头像是能正常显示的，但是所有的页面除了首页都不能正常显示。在控制台里面查看链接的时候，链接还是正常的，但是就是没有加载。</li>
-<li>添加自己的自定义文件夹的时候，彻底晕菜了，我设置了一个个文件夹试的（话说一个程序员干这种事，好丢脸），最后也不知道对不对…</li>
-<li>识别的favicon居然是png的格式…我爬了一会这个坑。但是设置了之后又不显示是怎么回事？</li>
-</ul>
-<p>以上问题都还没解决，先把这个总结贴上去吧。</p>
-<p>就这。</p>
-
       
     </div>
     
@@ -247,6 +219,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/11/18/折腾hexo记事/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
