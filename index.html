@@ -214,32 +214,6 @@
 <p>在网上看来看去，最后选择了Python，原因嘛，第一就是简单啦，第二容易学，第三漂亮，因为强制缩进，第四就是能玩爬虫（当时见识少）。碰到当时正好网易开了一个计算机系列课程，就跟着学。最后因为一点点基础都没有，学了大概两个月之后放弃了。</p>
 <p>最后的结果是误打误撞学了JavaScript。</p>
 <p>特别喜欢收集数据，特别喜欢数据的可视化，进行数据比较，占有大量真实的数据去分析一些东西。说白了，就是想用Python去爬一点东西啊。想起来这个就激情澎湃了呢~~。</p>
-<h1 id="巨大的计划">巨大的计划</h1><p>现在用找到工作了，工作完成之余，我又拾起来了自己的Python爬虫梦。</p>
-<p>给大家说一个特别搞笑的事情，啊哈哈。小白特别容易犯的。就是眼高手低。下面来看看我的计划。</p>
-<p>计划的真的特别庞大。想用一个长期运行的服务去跑这个爬虫。</p>
-<p>于是：</p>
-<ul>
-<li>系统稳定，那就用Ubuntu好了。OK，这个收了，列入学习计划。</li>
-<li>功耗要低吧。那现成的就是Raspberry Pi了呗。这个也收了。</li>
-<li>爬的东西怎么存放呢，总不能直接扔到外面吧。MySQL呗，这也也收了。</li>
-<li>对了，还有Python。</li>
-</ul>
-<p>然后啊，然后过两个周之内不断的看Raspberry Pi的相关信息，软硬件的，看Linux的命令，看SQL的语法，还装了Ubuntu和Windows 10的双系统…中间不断自己打脸，就慢慢的冷静了，放弃了。</p>
-<p>我还是先用自己的电脑，用Windows写两个能爬图片的爬虫再说吧。</p>
-<p>啊哈哈，流产的计划（我去哭一会）。</p>
-<h1 id="第一个爬虫的诞生">第一个爬虫的诞生</h1><p>教程是看的<a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank" rel="external">廖雪峰的Python教程</a>,这个教程的最大好处是：写的通顺，不像翻译的文章，那么多英语式汉语；然后就是快。然后就没了。Python 3的教程的print函数居然还没变量的输出，一句话，就是颗粒太大了。真的是入门，懂得了Python里面都有什么名词，都是干嘛用的，That’s all.</p>
-<p>完了之后发现自己还是什么都不会写。我想，算求，我直接看看别人怎么写的，自己再慢慢改造好了。</p>
-<p>我看网易教程之前就是看到了一个下载百度贴吧里面的图片的一段代码，现在我还是找一个这样的吧。因为据说好多网页设置了禁止爬虫，或者要浏览器标识，这还要模拟浏览器操作，还有的AJAX加载的…还是贴吧的单页面简单点。</p>
-<p>最初的是看的<a href="http://lovesoo.org/getting-started-python-web-crawler-to-crawl-the-baidu-post-bar-content-instance.html" target="_blank" rel="external">这个</a>和<a href="http://blog.csdn.net/u013445530/article/details/44876399" target="_blank" rel="external">这个</a>，决定修改第二个。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHtml</span><span class="params">(url)</span>:</span></span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line">    html = page.read()</span><br><span class="line">    <span class="keyword">return</span> html</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getImg</span><span class="params">(html)</span>:</span></span><br><span class="line">    reg = <span class="string">r'src="(.+?\.jpg)" pic_ext'</span></span><br><span class="line">    imgre = re.compile(reg)</span><br><span class="line">    imglist = re.findall(imgre,html)</span><br><span class="line">    x = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> imgurl <span class="keyword">in</span> imglist:</span><br><span class="line">        urllib.urlretrieve(imgurl,<span class="string">'%s.jpg'</span> % x)</span><br><span class="line">        x+=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">html = getHtml(<span class="string">"http://tieba.baidu.com/p/2522915602"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> getImg(html)</span><br></pre></td></tr></table></figure></p>
-<p>这个博主也说了，这段代码的正则不完善，会把<code>src=&quot;http://absdsadsa &gt;&lt;div&gt;&lt;/div&gt;sadsads.jpg</code>这样的也筛选出来。<br>我修改了一下，我的正则也是忘了，又开始看的。最后修改成：<code>http://.\S*?\.jpg</code>，因为这个版本是py2的，我有一点点的折腾成py3的，真的是零基础，就这个玩意也折腾了半天。</p>
-<p>最后的代码：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"></span><br><span class="line">import urllib.request</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">url = <span class="string">'http://tieba.baidu.com/p/1457328558#!/l/p1'</span></span><br><span class="line"></span><br><span class="line">html = urllib.request.urlopen(url).<span class="built_in">read</span>()</span><br><span class="line"></span><br><span class="line">html = html.decode()</span><br><span class="line"></span><br><span class="line">reg = re.compile(<span class="string">'http://.\S*?\.jpg'</span>)</span><br><span class="line"></span><br><span class="line">imgList = re.findall(reg, html)</span><br><span class="line"></span><br><span class="line">x = <span class="number">60</span></span><br><span class="line"></span><br><span class="line"><span class="operator">with</span> <span class="built_in">open</span>(<span class="string">'imgUrlList2.txt'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">	<span class="keyword">for</span> imgUrl <span class="operator">in</span> imgList:</span><br><span class="line">		urllib.request.urlretrieve(imgUrl, <span class="string">'%s.jpg'</span> % x)</span><br><span class="line">		f.<span class="built_in">write</span>(imgUrl)</span><br><span class="line">		f.<span class="built_in">write</span>(<span class="string">'\n'</span>)</span><br><span class="line">		x += <span class="number">1</span></span><br><span class="line">	f.<span class="built_in">close</span>()</span><br><span class="line">	print(<span class="string">'Done!'</span>)</span><br></pre></td></tr></table></figure></p>
-<p><strong>注：</strong>上面的地址是错的，这个页面是AJAX请求出来的，当时想抓这个页面的图片，所以改了，忘了改回来了。</p>
-<p>抓取的url保存到文件里面是因为我想看看都是什么样的，debug的时候用的。</p>
-<h2 id="问题一">问题一</h2><p>其实这里面最大的改变是正则。上面的正则可以看到博主原来的正则表达式里面是要匹配这样的字符串的<code>src=&quot;http://123xsdsf.jpg&quot;</code>，但是我有点不懂，我在官方文档里面看到<code>urllib.request.urlretrieve</code>方法接收的参数是url，但是博主写的前面带有src和双引号没看出来在什么地方去掉了。不知道是不是py2的urllib库能直接接收这样的参数。电脑上没有装py2，就没有弄了。所以我写的时候，直接过滤成url了。</p>
-<h2 id="问题二">问题二</h2><p>因为JavaScript的编程习惯，在文件写入的时候，我想给每条记录前面添加一个序号。在JavaScript里面，数字和字符串是能直接一个加号就能直接连接的。Python里报了错，说这样不行。</p>
-<p>这个问题还没解决。</p>
-<p>今天又有任务了，先搞定工作吧。</p>
-
       
     </div>
     
@@ -252,6 +226,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/11/19/第一个Python爬虫/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
